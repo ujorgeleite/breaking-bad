@@ -1,12 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { CharacterListModule } from './character-list/character-list.module';
+import { NotificationModalModule } from './notification-modal/notification-modal.module';
+import { CharacterListService } from './character-list/services/character-list.service';
+import { ApiService } from './commons/services/api.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        CharacterListModule,
+        NotificationModalModule
+      ],
+      providers: [
+        ApiService
       ],
       declarations: [
         AppComponent
@@ -26,10 +35,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('breaking-bad');
   });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to breaking-bad!');
-  });
 });
