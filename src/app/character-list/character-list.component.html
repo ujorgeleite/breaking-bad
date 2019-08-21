@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 text-center" *ngFor="let character of characterViewModel.characters">
+            <span class="container">
+                <h2 class="text-center">{{character.nickname}}</h2>
+                <img class="rounded-circle text-center" src="{{character.img}}" alt="{{character.name}}" width="240" height="240" />
+                <p class="text-center">
+                    {{character.name}}
+                </p>
+            </span>
+        </div>
+    </div>
+    <div>
+        <button (click)="previousPage()">Prev Page</button>
+        <button (click)="nextPage()">Next Page</button>    </div>
+</div>
