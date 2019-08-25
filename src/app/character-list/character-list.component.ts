@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, delay } from 'rxjs/operators';
 
 import { CharacterViewModel } from './models/character-view.model';
 import { CharacterListService } from './services/character-list.service';
@@ -28,7 +28,8 @@ export class CharacterListComponent implements OnInit {
   ngOnInit() {
     this.characterViewModel = new CharacterViewModel();
     from(this.characterListService.setIdMaxForPagination())
-      .pipe(switchMap(() => this.characterListService.goToPage(this.characterViewModel.currentPage)))
+      .pipe(switchMap(() => this.characterListService.goToPage(this.characterViewModel.currentPage),
+      ), delay(2000))
       .subscribe(characterViewModel => {
         this.characterViewModel = characterViewModel;
       },

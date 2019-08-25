@@ -4,21 +4,21 @@
             <div class="col-md-6 col-lg-4 col-sm-12 text-center"
                 *ngFor="let character of characterViewModel.characters">
                 <span class="container">
-                    <h2 class="text-center">{{character.nickname}}</h2>
-                    <img class="rounded-circle text-center" src="{{character.img}}" alt="{{character.name}}" width="240"
+                    <h2 id="character_nick_name_{{character.id}}" class="text-center">{{character.nickname}}</h2>
+                    <img id="character_image_{{character.id}}" class="rounded-circle text-center" src="{{character.img}}" alt="{{character.name}}" width="240"
                         height="240" />
-                    <p class="text-center">
+                    <p id="character_name_{{character.id}}" class="text-center">
                         {{character.name}}
                     </p>
                 </span>
             </div>
         </div>
         <div class="row">
-            <nav aria-label="Pagination">
+            <nav aria-label="Pagination" id="pagination">
                 <ul class="pagination justify-content-center fixed-bottom">
                     <li class="page-item" [class.active]="characterViewModel.currentPage == pageButton.pageId"
                         *ngFor="let pageButton of characterViewModel.pageButtons">
-                        <a class="page-link" href="#"
+                        <a id="page{{pageButton.pageNumber}}" class="page-link" href="#"
                             (click)="goToPage(pageButton.pageId)">{{pageButton.pageNumber}}</a>
                     </li>
                 </ul>
@@ -29,10 +29,10 @@
 
 <ng-template #loading>
     <div class="container">
-        <img src="./assets/background.png" class="img-fluid align-middle" alt="Background image"/>
+        <img id="backround_image" src="./assets/background.png" class="img-fluid align-middle" alt="Background image"/>
         <div class="row justify-content-center">
             <div class="spinner-border text-secondary spinner" role="status">                
-                <span class="sr-only">Loading...</span>
+                <span class="sr-only" id="loading">Loading...</span>
             </div>
             <span>Loading</span>
         </div>
