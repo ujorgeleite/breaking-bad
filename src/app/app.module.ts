@@ -9,6 +9,7 @@ import { ApiService} from './commons/services/api.service';
 import { CharacterListModule } from './character-list/character-list.module';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { PageButtonsService } from './commons/services/page-buttons.service';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     CharacterListModule,
     NgbModalModule],
-  providers: [ApiService],
+  providers: [ApiService, PageButtonsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

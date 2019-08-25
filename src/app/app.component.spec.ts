@@ -5,6 +5,7 @@ import { CharacterListModule } from './character-list/character-list.module';
 import { NotificationModalModule } from './notification-modal/notification-modal.module';
 import { CharacterListService } from './character-list/services/character-list.service';
 import { ApiService } from './commons/services/api.service';
+import { PageButtonsService } from './commons/services/page-buttons.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -15,7 +16,8 @@ describe('AppComponent', () => {
         NotificationModalModule
       ],
       providers: [
-        ApiService
+        ApiService,
+        PageButtonsService
       ],
       declarations: [
         AppComponent
