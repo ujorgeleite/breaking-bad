@@ -1,4 +1,7 @@
 {
+  "linterOptions": {
+    "exclude": ["**/stubs/**"]
+  },
   "extends": "tslint:recommended",
   "rules": {
     "array-type": false,
