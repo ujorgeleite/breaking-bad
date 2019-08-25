@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng lint && ng test --no-watch && ng e2e && ng build --prod",
     "test": "ng test",
-    "coverage": "ng test --code-coverage",
-    "lint": "ng lint",
+    "coverage": "ng test --no-watch --code-coverage",
+    "lint": "ng lint --fix=true",
     "e2e": "ng e2e"
   },
   "private": true,
