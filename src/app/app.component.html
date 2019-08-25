@@ -1,5 +1,11 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        Select your preferred character in  {{ title }}!
+    </h1>
+</div>
 
-<app-notification-modal [modalMessage] = "modalMessage" [modalTitle] = "modalTitle"></app-notification-modal>
-<app-character-list (openNotification) = "receiverEvent($event)"></app-character-list>
+<app-notification-modal [modalMessage]="modalMessage" [modalTitle]="modalTitle"></app-notification-modal>
+<app-character-list (openNotification)="receiverEvent($event)"></app-character-list>
 
 <router-outlet></router-outlet>
