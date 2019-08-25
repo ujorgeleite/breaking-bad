@@ -11,9 +11,9 @@ Run `npm run build` for generate a prod version for deploy the app, inside that 
 
 Run `npm run test` for run the unit tests (with watcher).
 
-Run `npm run coverage` for run the unit tests.
+Run `npm run coverage` for run the unit tests with code coverage, the files for coverage will be uploaded in the root path.
 
-Run `npm run lint` for run the lint and fix all possible issues for lint
+Run `npm run lint` for run the lint and fix all possible issues for lint.
 
 Run `npm run e2e` for run the end to end tests.
     
