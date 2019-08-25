@@ -1,8 +1,10 @@
+import { PageButtonModel } from '../models/page-buttons.model';
+
 export class PageParamsModel {
     constructor(public maxPerPage: number,
                 public currentPage: number,
-                public maxPages: number,
-                public previousPage: number = 0,
-                public nextPage: number = 0) {
+                public maxPageId: number,
+                public pageButtons: PageButtonModel[]) {
 
-    }}
+    }
+}

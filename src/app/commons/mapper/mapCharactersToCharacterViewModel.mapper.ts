@@ -6,7 +6,7 @@ import { AstMemoryEfficientTransformer } from '@angular/compiler';
 
 export class MapCharacterCharacterViewModel {
 
-     public static mapToCharacterViewModel({maxPerPage , currentPage, maxPages, previousPage, nextPage }, characters: CharacterModel[]) {
-        return new CharacterViewModel(previousPage, currentPage, nextPage, maxPages, characters.slice(0, maxPerPage));
+     public static mapToCharacterViewModel({maxPerPage, currentPage, maxPageId, pageButtons }, characters: CharacterModel[]) {
+        return new CharacterViewModel(currentPage, maxPageId, pageButtons, characters.slice(0, maxPerPage));
     }
 }

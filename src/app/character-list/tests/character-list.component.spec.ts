@@ -1,4 +1,4 @@
-import { of, Observable, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -6,10 +6,15 @@ import { CharacterListComponent } from '../character-list.component';
 import { CharacterListService } from '../services/character-list.service';
 import { CharacterListStub } from './stubs/character-list.stub';
 import { CharacterListMock } from './stubs/character-list.mock';
+import { ApiService } from 'src/app/commons/services/api.service';
+import { PageButtonsService } from 'src/app/commons/services/page-buttons.service';
+
 
 describe('CharacterListComponent', () => {
   let characterListService: CharacterListService;
+  let apiService: ApiService;
   let component: CharacterListComponent;
+  let spyApiService;
 
 
   beforeEach(async(() => {
@@ -19,7 +24,9 @@ describe('CharacterListComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        { provide: CharacterListService, useClass: CharacterListStub }
+        { provide: ApiService, useClass: CharacterListStub },
+        CharacterListService,
+        PageButtonsService
       ],
       declarations: [
         CharacterListComponent
@@ -29,79 +36,95 @@ describe('CharacterListComponent', () => {
     const fixture = TestBed.createComponent(CharacterListComponent);
     component = fixture.debugElement.componentInstance;
     characterListService = TestBed.get(CharacterListService);
+    apiService = TestBed.get(ApiService);
 
   }));
 
   describe('Given that the component be initialized', () => {
     beforeEach(() => {
       spyOn(component.openNotification, 'emit');
-      spyOn(characterListService, 'setIdMaxForPagination').and.callFake(() => of(16));
+      spyApiService = spyOn(apiService, 'get');
+      spyApiService.and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
+      component.ngOnInit();
     });
+
+    afterEach(() => {
+      spyApiService.and.callThrough();
+    });
+
+
 
     it('should be created', () => {
-      spyOn(characterListService, 'getPreviousPage').and.callFake(() => CharacterListMock.getCharacterViewModel());
-      expect(characterListService).toBeDefined();
+      expect(component).toBeDefined();
     });
 
-    describe('And nextPage is called, ', () => {
-      describe('And return with sucess', () => {
-        beforeAll(() => {
-          spyOn(characterListService, 'getNextPage').and.callFake(() => CharacterListMock.getCharacterViewModel());
-          component.nextPage();
-        });
-        it('then the characterModel will be populated', () => {
-          expect(component.characterViewModel).not.toBeNull();
+    describe('and the method gotToPage was called with page id 3,', () => {
+      describe('and the return for call was with success', () => {
+        beforeEach(() => {
+          spyApiService.and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
+          component.goToPage(3);
         });
 
-        it('then the openNotification event will not be called', () => {
+        afterEach(() => {
+          spyApiService.and.callThrough();
+        });
+
+        it('then the current page should be 3', () => {
+          expect(component.characterViewModel.currentPage).toBe(3);
+        });
+
+        it('then the max page Id should be 24', () => {
+          expect(component.characterViewModel.maxPageId).toBe(24);
+        });
+
+        it('then the pagebuttons have to be length 3', () => {
+          expect(component.characterViewModel.pageButtons.length).toBe(5);
+        });
+
+        it('then the characters should be populated', () => {
+          expect(component.characterViewModel.characters).not.toBeNull();
+        });
+
+        it('then the notification event haven\'t be called', () => {
           expect(component.openNotification.emit).not.toHaveBeenCalled();
         });
+
       });
 
-      describe('And throw exception', () => {
-        it('then the characterModel will not be populated', () => {
-          spyOn(characterListService, 'getNextPage').and.callFake(() => throwError(''));
-          component.nextPage();
-          expect(component.characterViewModel).toBeUndefined();
+      describe('and the return for call was with failure', () => {
+        beforeEach(() => {
+          const args = `characters?limit=6&offset=6`;
+          spyApiService.and.callFake(() => of({}));
+          component.ngOnInit();
+          component.goToPage(1);
         });
 
-        it('then the openNotification event will be called', () => {
-          spyOn(characterListService, 'getNextPage').and.callFake(() => throwError(''));
-          component.nextPage();
+        afterEach(() => {
+          spyApiService.and.callThrough();
+        });
+
+        it('then the current page should be 1', () => {
+          expect(component.characterViewModel.currentPage).toBe(1);
+        });
+
+        it('then the max page Id should be 0', () => {
+          expect(component.characterViewModel.maxPageId).toBe(0);
+        });
+
+        it('then the pagebuttons have to be length 0', () => {
+          expect(component.characterViewModel.pageButtons.length).toBe(0);
+        });
+
+        it('then the characters should be empty', () => {
+          expect(component.characterViewModel.characters).toEqual([]);
+        });
+
+        it('then the notification service haven\'t be called', () => {
           expect(component.openNotification.emit).toHaveBeenCalled();
         });
       });
     });
 
-    describe('And previousPage is called, ', () => {
-      describe('And return with sucess', () => {
-        beforeAll(() => {
-          spyOn(characterListService, 'getPreviousPage').and.callFake(() => CharacterListMock.getCharacterViewModel());
-          component.previousPage();
-        });
-        it('then the characterModel will be populated', () => {
-          expect(component.characterViewModel).not.toBeNull();
-        });
-
-        it('then the openNotification event will not be called', () => {
-          expect(component.openNotification.emit).not.toHaveBeenCalled();
-        });
-      });
-
-      describe('And throw exception', () => {
-        it('then the characterModel will not be populated', () => {
-          spyOn(characterListService, 'getPreviousPage').and.callFake(() => throwError(''));
-          component.previousPage();
-          expect(component.characterViewModel).toBeUndefined();
-        });
-
-        it('then the openNotification event will be called', () => {
-          spyOn(characterListService, 'getPreviousPage').and.callFake(() => throwError(''));
-          component.previousPage();
-          expect(component.openNotification.emit).toHaveBeenCalled();
-        });
-      });
-    });
   });
 
 });

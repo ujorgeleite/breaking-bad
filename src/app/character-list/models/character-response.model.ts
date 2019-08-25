@@ -1,4 +1,5 @@
 export class CharacterResponseModel {
+// tslint:disable-next-line: variable-name
     constructor(public char_id: number,
                 public name?: string,
                 public birthday?: string,
