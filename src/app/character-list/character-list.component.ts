@@ -28,27 +28,19 @@ export class CharacterListComponent implements OnInit {
   ngOnInit() {
     this.characterViewModel = new CharacterViewModel();
     from(this.characterListService.setIdMaxForPagination())
-      .pipe(switchMap(() => this.characterListService.getPreviousPage()))
+      .pipe(switchMap(() => this.characterListService.goToPage(this.characterViewModel.currentPage)))
       .subscribe(characterViewModel => {
         this.characterViewModel = characterViewModel;
       },
-      () => this.emitNotification());
+        () => this.emitNotification());
   }
 
-  nextPage = () => {
-    this.characterListService.getNextPage()
+  goToPage = (pageId: number) => {
+    this.characterListService.goToPage(pageId)
       .subscribe(characterViewModel => {
         this.characterViewModel = characterViewModel;
       },
-      () => this.emitNotification());
-  }
-
-  previousPage = () => {
-    this.characterListService.getPreviousPage()
-      .subscribe(characterViewModel => {
-        this.characterViewModel = characterViewModel;
-      },
-      () => this.emitNotification());
+        () => this.emitNotification());
   }
 
   emitNotification = () => {

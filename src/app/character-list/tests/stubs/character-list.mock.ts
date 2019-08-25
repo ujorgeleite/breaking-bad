@@ -75,11 +75,9 @@ export class CharacterListMock {
     public static getCharacterViewModel(): Observable<CharacterViewModel> {
 
         const characterViewModel: CharacterViewModel = new CharacterViewModel();
-        characterViewModel.maxPages = 1;
+        characterViewModel.maxPageId = 1;
         characterViewModel.characters = CharacterListMock.getAllCharacterList();
         characterViewModel.currentPage = 1;
-        characterViewModel.nextPage = 1;
-        characterViewModel.previousPage = 1;
 
         return of(characterViewModel);
     }
