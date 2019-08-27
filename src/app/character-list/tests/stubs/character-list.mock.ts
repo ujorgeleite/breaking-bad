@@ -8,33 +8,33 @@ export class CharacterListMock {
 
     public static getAllCharacterList(startSlice: number = 0, endSlice: number = 25): CharacterModel[] {
         const characters: CharacterModel[] = [];
-        characters.push(new CharacterModel(1, 'Walter White', [], 'https://images.amcnetworks.com/cast_bb_700x1000_walter-white-lg.jpg', 'Heisenberg'));
-        characters.push(new CharacterModel(2, 'Jesse Pinkman', [], 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg', 'Cap nCook'));
-        characters.push(new CharacterModel(3, 'Skyler White', [], 'https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg', 'Sky'));
-        characters.push(new CharacterModel(4, 'Walter White Jr.', [], 'https://media1.popsugar-assets.com/files/thumbor/W…f3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg', 'Flynn'));
-        characters.push(new CharacterModel(5, 'Henry Schrader', [], 'https://upload.wikimedia.org/220px-Hank_Schrader2.jpg', 'Hank'));
-        characters.push(new CharacterModel(6, 'Marie Schrader', [], 'https://vignette.wikia.nocookie.net/latest?cb=20120617211645', 'Marie'));
-        characters.push(new CharacterModel(7, 'Mike Ehrmantraut', [], 'https://images.amcnetworks.com/amc.com/wp-content/700x1000_mike-ehrmantraut-lg.jpg', 'Mike'));
-        characters.push(new CharacterModel(8, 'Saul Goodman', [], 'https://vignette.wikia.nocookie.net/breakingbad/im…aul_Goodman.jpg/revision/latest?cb=20120704065846', 'Jimmy McGill'));
+        characters.push(new CharacterModel(1, 'Walter White', [], 'https://images.amcnetworks.com/cast_bb_700x1000_walter-white-lg.jpg', 'Heisenberg', 'Presumed dead'));
+        characters.push(new CharacterModel(2, 'Jesse Pinkman', [], 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg', 'Cap nCook', 'Presumed dead'));
+        characters.push(new CharacterModel(3, 'Skyler White', [], 'https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg', 'Sky', 'Presumed dead'));
+        characters.push(new CharacterModel(4, 'Walter White Jr.', [], 'https://media1.popsugar-assets.com/files/thumbor/W…f3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg', 'Flynn', 'Presumed dead'));
+        characters.push(new CharacterModel(5, 'Henry Schrader', [], 'https://upload.wikimedia.org/220px-Hank_Schrader2.jpg', 'Hank', 'Presumed dead'));
+        characters.push(new CharacterModel(6, 'Marie Schrader', [], 'https://vignette.wikia.nocookie.net/latest?cb=20120617211645', 'Marie', 'Presumed dead'));
+        characters.push(new CharacterModel(7, 'Mike Ehrmantraut', [], 'https://images.amcnetworks.com/amc.com/wp-content/700x1000_mike-ehrmantraut-lg.jpg', 'Mike', 'Presumed dead'));
+        characters.push(new CharacterModel(8, 'Saul Goodman', [], 'https://vignette.wikia.nocookie.net/breakingbad/im…aul_Goodman.jpg/revision/latest?cb=20120704065846', 'Jimmy McGill', 'Presumed dead'));
 
-        characters.push(new CharacterModel(9, 'Gustavo Fring', [], 'https://images.amcnetworks.com/cast_bb_700x1000_walter-white-lg.jpg', 'Gus'));
-        characters.push(new CharacterModel(10, 'Hector Salamanca', [], 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg', 'Don Hector'));
-        characters.push(new CharacterModel(11, 'Domingo Molina', [], 'https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg', 'Krazy-8'));
-        characters.push(new CharacterModel(12, 'Tuco Salamanca', [], 'https://media1.popsugar-assets.com/files/thumbor/W…f3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg', 'Tuco'));
-        characters.push(new CharacterModel(13, 'Marco & Leonel Salamanca', [], 'https://upload.wikimedia.org/220px-Hank_Schrader2.jpg', 'The Cousins'));
-        characters.push(new CharacterModel(14, 'Lydia Rodarte-Quayle', [], 'https://vignette.wikia.nocookie.net/latest?cb=20120617211645', 'Lydia'));
-        characters.push(new CharacterModel(15, 'Todd Alquist', [], 'https://images.amcnetworks.com/amc.com/wp-content/700x1000_mike-ehrmantraut-lg.jpg', 'Ricky Hitler'));
-        characters.push(new CharacterModel(16, 'Jane Margolis', [], 'https://vignette.wikia.nocookie.net/breakingbad/im…aul_Goodman.jpg/revision/latest?cb=20120704065846', 'Apology Girl'));
+        characters.push(new CharacterModel(9, 'Gustavo Fring', [], 'https://images.amcnetworks.com/cast_bb_700x1000_walter-white-lg.jpg', 'Gus', 'Presumed dead'));
+        characters.push(new CharacterModel(10, 'Hector Salamanca', [], 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg', 'Don Hector', 'Presumed dead'));
+        characters.push(new CharacterModel(11, 'Domingo Molina', [], 'https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg', 'Krazy-8', 'Presumed dead'));
+        characters.push(new CharacterModel(12, 'Tuco Salamanca', [], 'https://media1.popsugar-assets.com/files/thumbor/W…f3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg', 'Tuco', 'Presumed dead'));
+        characters.push(new CharacterModel(13, 'Marco & Leonel Salamanca', [], 'https://upload.wikimedia.org/220px-Hank_Schrader2.jpg', 'The Cousins', 'Presumed dead'));
+        characters.push(new CharacterModel(14, 'Lydia Rodarte-Quayle', [], 'https://vignette.wikia.nocookie.net/latest?cb=20120617211645', 'Lydia', 'Presumed dead'));
+        characters.push(new CharacterModel(15, 'Todd Alquist', [], 'https://images.amcnetworks.com/amc.com/wp-content/700x1000_mike-ehrmantraut-lg.jpg', 'Ricky Hitler', 'Presumed dead'));
+        characters.push(new CharacterModel(16, 'Jane Margolis', [], 'https://vignette.wikia.nocookie.net/breakingbad/im…aul_Goodman.jpg/revision/latest?cb=20120704065846', 'Apology Girl', 'Presumed dead'));
 
 
-        characters.push(new CharacterModel(17, 'Skinny Pete', [], 'https://images.amcnetworks.com/cast_bb_700x1000_walter-white-lg.jpg', 'Skinny'));
-        characters.push(new CharacterModel(18, 'Brandon Mayhew', [], 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg', 'Badger'));
-        characters.push(new CharacterModel(19, 'Huell Babineaux', [], 'https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg', 'Gomie'));
-        characters.push(new CharacterModel(20, 'Steven Gomez', [], 'https://media1.popsugar-assets.com/files/thumbor/W…f3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg', 'Ted'));
-        characters.push(new CharacterModel(21, 'Theodore Beneke', [], 'https://upload.wikimedia.org/220px-Hank_Schrader2.jpg', 'GB'));
-        characters.push(new CharacterModel(22, 'Gale Boetticher', [], 'https://vignette.wikia.nocookie.net/latest?cb=20120617211645', 'Andrea'));
-        characters.push(new CharacterModel(23, 'Andrea Cantillo', [], 'https://images.amcnetworks.com/amc.com/wp-content/700x1000_mike-ehrmantraut-lg.jpg', 'Brock'));
-        characters.push(new CharacterModel(24, 'Brock Cantillo', [], 'https://vignette.wikia.nocookie.net/breakingbad/im…aul_Goodman.jpg/revision/latest?cb=20120704065846', 'last'));
+        characters.push(new CharacterModel(17, 'Skinny Pete', [], 'https://images.amcnetworks.com/cast_bb_700x1000_walter-white-lg.jpg', 'Skinny', 'Presumed dead'));
+        characters.push(new CharacterModel(18, 'Brandon Mayhew', [], 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Jesse_Pinkman2.jpg/220px-Jesse_Pinkman2.jpg', 'Badger', 'Presumed dead'));
+        characters.push(new CharacterModel(19, 'Huell Babineaux', [], 'https://s-i.huffpost.com/gen/1317262/images/o-ANNA-GUNN-facebook.jpg', 'Gomie', 'Presumed dead'));
+        characters.push(new CharacterModel(20, 'Steven Gomez', [], 'https://media1.popsugar-assets.com/files/thumbor/W…f3c9_TCDBRBA_EC011/i/RJ-Mitte-Walter-White-Jr.jpg', 'Ted', 'Presumed dead'));
+        characters.push(new CharacterModel(21, 'Theodore Beneke', [], 'https://upload.wikimedia.org/220px-Hank_Schrader2.jpg', 'GB', 'Presumed dead'));
+        characters.push(new CharacterModel(22, 'Gale Boetticher', [], 'https://vignette.wikia.nocookie.net/latest?cb=20120617211645', 'Andrea', 'Presumed dead'));
+        characters.push(new CharacterModel(23, 'Andrea Cantillo', [], 'https://images.amcnetworks.com/amc.com/wp-content/700x1000_mike-ehrmantraut-lg.jpg', 'Brock', 'Presumed dead'));
+        characters.push(new CharacterModel(24, 'Brock Cantillo', [], 'https://vignette.wikia.nocookie.net/breakingbad/im…aul_Goodman.jpg/revision/latest?cb=20120704065846', 'last', 'Presumed dead'));
 
         return characters.slice(startSlice, endSlice);
     }

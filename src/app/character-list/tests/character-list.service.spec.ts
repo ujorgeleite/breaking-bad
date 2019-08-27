@@ -8,12 +8,14 @@ import { CharacterListMock } from './stubs/character-list.mock';
 import { CharacterListService } from '../services/character-list.service';
 import { CharacterViewModel } from '../models/character-view.model';
 import { PageButtonsService } from 'src/app/commons/services/page-buttons.service';
+import { CharacterRestService } from 'src/app/commons/rest-services/character.rest.service';
 
 describe('CharacterListService', () => {
 
     let service: CharacterListService;
     let apiService: ApiService;
     let pageButtonsService: PageButtonsService;
+    let characterRestService: CharacterRestService;
 
     beforeEach(() => {
         const testBed = TestBed.configureTestingModule({
@@ -22,6 +24,7 @@ describe('CharacterListService', () => {
             providers: [
                 CharacterListService,
                 { provide: ApiService, useClass: stub },
+                { provide: CharacterRestService, useClass: stub },
                 PageButtonsService
             ]
         });
@@ -29,6 +32,7 @@ describe('CharacterListService', () => {
         service = testBed.get(CharacterListService);
         pageButtonsService = testBed.get(PageButtonsService);
         apiService = testBed.get(ApiService);
+        characterRestService = testBed.get(CharacterRestService);
     });
 
     describe('Initializing service', () => {
@@ -40,22 +44,22 @@ describe('CharacterListService', () => {
             let result;
 
             it('then the return should be a characterModelList', async () => {
-                spyOn(apiService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
+                spyOn(characterRestService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
                 result = await service.getAll().toPromise();
                 expect(result).toEqual(CharacterListMock.getAllCharacterList());
             });
 
             it('then the ApiService GET method should be called one time', async () => {
-                spyOn(apiService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
+                spyOn(characterRestService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
                 result = await service.getAll().toPromise();
-                expect(apiService.get).toHaveBeenCalledTimes(1);
+                expect(characterRestService.get).toHaveBeenCalledTimes(1);
             });
 
             describe('and when the method setIdMaxForPagination is called', () => {
 
                 describe('and result for call return items ', () => {
                     beforeEach(async () => {
-                        spyOn(apiService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
+                        spyOn(characterRestService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
                         result = await service.setIdMaxForPagination().toPromise();
                     });
 
@@ -64,13 +68,13 @@ describe('CharacterListService', () => {
                     });
 
                     it('then the ApiService GET method should be called two times', () => {
-                        expect(apiService.get).toHaveBeenCalledTimes(1);
+                        expect(characterRestService.get).toHaveBeenCalledTimes(1);
                     });
                 });
 
                 describe('and result for call don\'t return items ', () => {
                     beforeEach(async () => {
-                        spyOn(apiService, 'get').and.callFake(() => of());
+                        spyOn(characterRestService, 'get').and.callFake(() => of());
                         result = await service.setIdMaxForPagination().toPromise();
                     });
 
@@ -79,7 +83,7 @@ describe('CharacterListService', () => {
                     });
 
                     it('then the ApiService GET method should be called two times', () => {
-                        expect(apiService.get).toHaveBeenCalledTimes(1);
+                        expect(characterRestService.get).toHaveBeenCalledTimes(1);
                     });
                 });
             });
@@ -88,7 +92,8 @@ describe('CharacterListService', () => {
 
                 let characterViewModel: CharacterViewModel;
                 beforeEach(async () => {
-                    spyOn(apiService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList(8, 14)));
+                    spyOn(characterRestService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList(8, 14)));
+                    spyOn(characterRestService, 'getWithPagination').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList(8, 14)));
                     characterViewModel = await from(service.setIdMaxForPagination())
                         .pipe(switchMap(() => service.goToPage(3))).toPromise();
 

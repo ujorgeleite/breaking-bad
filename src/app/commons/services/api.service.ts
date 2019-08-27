@@ -14,4 +14,8 @@ export class ApiService {
         return this.httpClient.get<CharacterResponseModel[]>(`${this.baseUrl}${paramUrl}`);
     }
 
+    getById(paramUrl: string): Observable<CharacterResponseModel> {
+        return this.httpClient.get<CharacterResponseModel>(`${this.baseUrl}${paramUrl}`);
+    }
+
 }

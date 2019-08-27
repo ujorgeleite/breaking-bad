@@ -1,6 +1,6 @@
 import { CharacterListPage } from './helpers/character-list.po';
 
-fdescribe('workspace-project Character List', () => {
+describe('workspace-project Character List', () => {
     let page: CharacterListPage;
 
     beforeAll(() => {
