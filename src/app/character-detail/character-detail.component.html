@@ -1,0 +1,46 @@
+<div class="container">
+    
+    <div class="row text-center">
+
+        <figure class="figure col-md-6">
+            <img src="{{character?.img}}" [ngClass]="isDeceased('isDeceased')" class="rounded  w-75 character-img"
+                alt="In the picture is {{character.name}}">
+            <figcaption class="figure-caption">In the picture above is {{character.name}}</figcaption>
+        </figure>
+
+        <div class="col-md-6 identification">
+            <div class="row">
+                <p class="col-md-12">This is</p>
+            </div>
+            <div class="row text-center">
+                <h1 class="col-md-12">{{character?.name}}</h1>
+            </div>
+            <div class="row">
+                <p class="col-md-12">more know as</p>
+            </div>
+            <div class="row text-center">
+                <h1 class="col-md-12"> {{character?.nickname}}</h1>
+            </div>
+
+            <div class="row">
+                <p class="col-md-12">their occupations are</p>
+            </div>
+            <div class="row text-center">
+                <ul class="col-md-12">
+                    <li *ngFor="let ocupation of character?.occupation" class="text-center">
+                        <h3>{{ocupation}}</h3>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <p class="col-md-12">in this moment we know that is</p>
+            </div>
+            <div class="row text-center">
+                <h1 class="col-md-12" [ngClass]="isDeceased('deathStatus')">{{character?.status}}</h1>
+            </div>
+        </div>
+
+    </div>
+    <button type="button" [routerLink]="['/']" class="btn btn-primary btn-lg float-right">Come Back to List</button>
+</div>

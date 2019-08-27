@@ -17,6 +17,7 @@ import { ErrorMessages } from '../commons/error-messages';
 })
 export class CharacterListComponent implements OnInit {
   characterViewModel: CharacterViewModel;
+  title: 'Breaking Bad';
 
   @Output()
   public openNotification: EventEmitter<NotificationModel> = new EventEmitter<NotificationModel>();
@@ -29,7 +30,7 @@ export class CharacterListComponent implements OnInit {
     this.characterViewModel = new CharacterViewModel();
     from(this.characterListService.setIdMaxForPagination())
       .pipe(switchMap(() => this.characterListService.goToPage(this.characterViewModel.currentPage),
-      ), delay(2000))
+      ))
       .subscribe(characterViewModel => {
         this.characterViewModel = characterViewModel;
       },
