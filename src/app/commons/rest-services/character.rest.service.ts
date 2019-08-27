@@ -1,7 +1,7 @@
-import { ApiService } from '../services/api.service';
-import { CharacterResponseModel } from 'src/app/character-list/models/character-response.model';
 import { Observable } from 'rxjs';
 
+import { ApiService } from '../services/api.service';
+import { CharacterResponseModel } from 'src/app/character-list/models/character-response.model';
 export class CharacterRestService {
 
     constructor(private apiService: ApiService) {

@@ -1,7 +1,8 @@
-import { CharacterModel } from '../../models/character.model';
 import { Observable, of } from 'rxjs';
-import { CharacterViewModel } from '../../models/character-view.model';
-import { CharacterResponseModel } from '../../models/character-response.model';
+
+import { CharacterModel } from '../../character-list/models/character.model';
+import { CharacterViewModel } from '../../character-list/models/character-view.model';
+import { CharacterResponseModel } from '../../character-list/models/character-response.model';
 
 export class CharacterListMock {
 

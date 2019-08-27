@@ -1,5 +1,5 @@
 import { Observable, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { CharacterModel } from '../models/character.model';
@@ -18,7 +18,7 @@ export class CharacterListService {
     private characterViewModel: CharacterViewModel;
 
     constructor(private characterRestService: CharacterRestService,
-        private pageButtonService: PageButtonsService) {
+                private pageButtonService: PageButtonsService) {
         this.characterViewModel = new CharacterViewModel();
     }
 

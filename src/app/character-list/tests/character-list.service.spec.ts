@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { ApiService } from 'src/app/commons/services/api.service';
 import { CharacterListStub as stub } from './stubs/character-list.stub';
-import { CharacterListMock } from './stubs/character-list.mock';
+import { CharacterListMock } from '../../commons/mocks/character-list.mock';
 import { CharacterListService } from '../services/character-list.service';
 import { CharacterViewModel } from '../models/character-view.model';
 import { PageButtonsService } from 'src/app/commons/services/page-buttons.service';
@@ -93,7 +93,8 @@ describe('CharacterListService', () => {
                 let characterViewModel: CharacterViewModel;
                 beforeEach(async () => {
                     spyOn(characterRestService, 'get').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList(8, 14)));
-                    spyOn(characterRestService, 'getWithPagination').and.callFake(() => of(CharacterListMock.getAllCharacterResponseList(8, 14)));
+                    spyOn(characterRestService, 'getWithPagination')
+                        .and.callFake(() => of(CharacterListMock.getAllCharacterResponseList(8, 14)));
                     characterViewModel = await from(service.setIdMaxForPagination())
                         .pipe(switchMap(() => service.goToPage(3))).toPromise();
 

@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CharacterListComponent } from '../character-list.component';
 import { CharacterListService } from '../services/character-list.service';
 import { CharacterListStub } from './stubs/character-list.stub';
-import { CharacterListMock } from './stubs/character-list.mock';
+import { CharacterListMock } from '../../commons/mocks/character-list.mock';
 import { ApiService } from 'src/app/commons/services/api.service';
 import { PageButtonsService } from 'src/app/commons/services/page-buttons.service';
 import { CharacterRestService } from 'src/app/commons/rest-services/character.rest.service';
