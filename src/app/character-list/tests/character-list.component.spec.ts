@@ -5,9 +5,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { CharacterListComponent } from '../character-list.component';
 import { CharacterListService } from '../services/character-list.service';
 import { CharacterListStub } from './stubs/character-list.stub';
-import { CharacterListMock } from './stubs/character-list.mock';
+import { CharacterListMock } from '../../commons/mocks/character-list.mock';
 import { ApiService } from 'src/app/commons/services/api.service';
 import { PageButtonsService } from 'src/app/commons/services/page-buttons.service';
+import { CharacterRestService } from 'src/app/commons/rest-services/character.rest.service';
 
 
 describe('CharacterListComponent', () => {
@@ -15,6 +16,7 @@ describe('CharacterListComponent', () => {
   let apiService: ApiService;
   let component: CharacterListComponent;
   let spyApiService;
+  let characterRestService: CharacterRestService;
 
 
   beforeEach(async(() => {
@@ -25,6 +27,7 @@ describe('CharacterListComponent', () => {
       ],
       providers: [
         { provide: ApiService, useClass: CharacterListStub },
+        { provide: CharacterRestService, useClass: CharacterListStub },
         CharacterListService,
         PageButtonsService
       ],
@@ -37,13 +40,13 @@ describe('CharacterListComponent', () => {
     component = fixture.debugElement.componentInstance;
     characterListService = TestBed.get(CharacterListService);
     apiService = TestBed.get(ApiService);
+    characterRestService = TestBed.get(CharacterRestService);
 
   }));
 
   describe('Given that the component be initialized', () => {
     beforeEach(() => {
-      spyOn(component.openNotification, 'emit');
-      spyApiService = spyOn(apiService, 'get');
+      spyApiService = spyOn(characterRestService, 'get');
       spyApiService.and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
       component.ngOnInit();
     });
@@ -53,7 +56,6 @@ describe('CharacterListComponent', () => {
     });
 
 
-
     it('should be created', () => {
       expect(component).toBeDefined();
     });
@@ -61,6 +63,8 @@ describe('CharacterListComponent', () => {
     describe('and the method gotToPage was called with page id 3,', () => {
       describe('and the return for call was with success', () => {
         beforeEach(() => {
+          spyOn(component.openNotification, 'emit');
+          spyApiService = spyOn(characterRestService, 'getWithPagination');
           spyApiService.and.callFake(() => of(CharacterListMock.getAllCharacterResponseList()));
           component.goToPage(3);
         });
@@ -93,9 +97,9 @@ describe('CharacterListComponent', () => {
 
       describe('and the return for call was with failure', () => {
         beforeEach(() => {
-          const args = `characters?limit=6&offset=6`;
+          spyOn(component.openNotification, 'emit');
+          spyApiService = spyOn(characterRestService, 'getWithPagination');
           spyApiService.and.callFake(() => of({}));
-          component.ngOnInit();
           component.goToPage(1);
         });
 
@@ -119,7 +123,7 @@ describe('CharacterListComponent', () => {
           expect(component.characterViewModel.characters).toEqual([]);
         });
 
-        it('then the notification service haven\'t be called', () => {
+        it('then the notification service should be called', () => {
           expect(component.openNotification.emit).toHaveBeenCalled();
         });
       });

@@ -1,6 +1,6 @@
 {
   "linterOptions": {
-    "exclude": ["**/stubs/**"]
+    "exclude": ["**/**.mock.ts"]
   },
   "extends": "tslint:recommended",
   "rules": {

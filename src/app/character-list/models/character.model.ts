@@ -1,8 +1,9 @@
 export class CharacterModel {
-    constructor(public id: number,
+    constructor(public id?: number,
                 public name?: string,
-                public occupation?: [],
+                public occupation?: string[],
                 public img?: string,
-                public nickname?: string) {
+                public nickname?: string,
+                public status?: string) {
     }
 }

@@ -1,16 +1,24 @@
+<div style="text-align:center">
+    <h1 id="title_app">
+        Select your preferred character!
+    </h1>
+</div>
+
 <ng-template [ngIf]="characterViewModel.characters.length > 0 " [ngIfElse]="loading">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-4 col-sm-12 text-center"
                 *ngFor="let character of characterViewModel.characters">
-                <span class="container">
-                    <h2 id="character_nick_name_{{character.id}}" class="text-center">{{character.nickname}}</h2>
-                    <img id="character_image_{{character.id}}" class="rounded-circle text-center" src="{{character.img}}" alt="{{character.name}}" width="240"
-                        height="240" />
-                    <p id="character_name_{{character.id}}" class="text-center">
-                        {{character.name}}
-                    </p>
-                </span>
+                <a [routerLink]="[ '/characterDetail',character.id]">
+                    <span class="container">
+                        <h2 id="character_nick_name_{{character.id}}" class="text-center">{{character.nickname}}</h2>
+                        <img id="character_image_{{character.id}}" class="rounded-circle text-center"
+                            src="{{character.img}}" alt="{{character.name}}" width="240" height="240" />
+                        <p id="character_name_{{character.id}}" class="text-center">
+                            {{character.name}}
+                        </p>
+                    </span>
+                </a>
             </div>
         </div>
         <div class="row">
@@ -29,9 +37,9 @@
 
 <ng-template #loading>
     <div class="container">
-        <img id="backround_image" src="./assets/background.png" class="img-fluid align-middle" alt="Background image"/>
+        <img id="backround_image" src="./assets/background.png" class="img-fluid align-middle" alt="Background image" />
         <div class="row justify-content-center">
-            <div class="spinner-border text-secondary spinner" role="status">                
+            <div class="spinner-border text-secondary spinner" role="status">
                 <span class="sr-only" id="loading">Loading...</span>
             </div>
             <span>Loading</span>

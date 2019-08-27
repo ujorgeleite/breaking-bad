@@ -5,13 +5,17 @@ import { PageButtonModel } from '../models/page-buttons.model';
 export class PageButtonsService {
     private pageButtons: PageButtonModel[];
     constructor() {
-        this.pageButtons = [];
+        this.initializeButtons();
     }
 
     pushPageButton(pageId: number, charactersPerPage: number) {
         if (pageId !== 1 && (pageId % charactersPerPage) !== 0) { return; }
         const pageNumber = this.pageButtons.length + 1;
         this.pageButtons.push(new PageButtonModel(pageNumber, pageId));
+    }
+
+    initializeButtons(): void {
+        this.pageButtons = [];
     }
 
     getPageButtonList(): PageButtonModel[] {

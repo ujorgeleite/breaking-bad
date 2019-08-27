@@ -10,4 +10,5 @@ export class CharacterListStub {
     public getNextPageNumber() { }
     public getPageParams() { }
     public goToPage() { }
+    public getWithPagination() { }
 }
