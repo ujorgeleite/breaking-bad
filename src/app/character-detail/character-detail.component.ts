@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ParamMap, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+
 import { CharacterModel } from '../character-list/models/character.model';
 import { CharacterDetailService } from './services/character-detail.service';
 import { CharacterMapper } from '../commons/mapper/mapCharacterToModels.mapper';
-import { stringify } from '@angular/compiler/src/util';
+
 
 @Component({
   selector: 'app-character-detail',
@@ -15,7 +16,7 @@ export class CharacterDetailComponent implements OnInit {
   character: CharacterModel;
 
   constructor(private route: ActivatedRoute,
-    private characterDetailService: CharacterDetailService) { }
+              private characterDetailService: CharacterDetailService) { }
 
   ngOnInit() {
     this.character = new CharacterModel();
