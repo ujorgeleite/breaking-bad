@@ -19,3 +19,16 @@ Run `npm run e2e` for run the end to end tests.
     
  
 
+## Solution
+
+For this project I use a simple solution for list all "breaking bad" characters by API https://www.breakingbadapi.com/  :
+
+* Get all characters
+* Se max id for send to get characters with pagination resource
+* Detail Page by angular routes
+
+## Highlights
+* I use clean code practices
+* bdd for tests
+* e2e tests
+* Reactive programming with RXJS and more things you can be seen in the code.
