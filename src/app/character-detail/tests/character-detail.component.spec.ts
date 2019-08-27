@@ -15,7 +15,6 @@ describe('CharacterDetailComponent', () => {
   let component: CharacterDetailComponent;
   let fixture: ComponentFixture<CharacterDetailComponent>;
   let characterDetailService: CharacterDetailService;
-  let apiService;
   let characterRestService;
   let route;
   let service;
@@ -23,13 +22,13 @@ describe('CharacterDetailComponent', () => {
 
   beforeEach(async(() => {
 
-    routeMap = { paramMap: of({ get: (key) => 'value' }) };
+    routeMap = { paramMap: of({ get: (key) => 8 }) };
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
       providers: [
-        { provide: ApiService, useClass: CharacterListStub },
+        ApiService,
         { provide: CharacterRestService, useClass: CharacterListStub },
         { provide: ActivatedRoute, useValue: routeMap },
         { provide: CharacterDetailService, useClass: CharacterDetailStub },
@@ -43,7 +42,6 @@ describe('CharacterDetailComponent', () => {
     fixture = TestBed.createComponent(CharacterDetailComponent);
     component = fixture.debugElement.componentInstance;
     characterDetailService = TestBed.get(CharacterDetailService);
-    apiService = TestBed.get(ApiService);
     characterRestService = TestBed.get(CharacterRestService);
     route = TestBed.get(ActivatedRoute);
     service = TestBed.get(CharacterDetailService);
