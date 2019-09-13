@@ -1,32 +1,32 @@
 version: 2
-  jobs:
-    build:
-      working_directory: ~/breaking-bad
-      docker:
-        - image: circleci/node:8-browsers
-      steps:
-        - checkout
-        - restore_cache:
-            key: dependency-cache-{{ checksum "package.json"  }}
-        - run:
-            name: install-dependencies
-            command: yarn install
-        - save_cache:
-            key: dependency-cache-{{ checksum "package-lock.json" }}
-            paths:
-              - ./node_modules
-        - run:
-            name: angular-build
-            command: npm run build
-        - run:
-            name: angular-test
-            command: npm run test
-        - store_artifacts:
-            path: test-results.xml
-            prefix: tests
-        - run:
-            name: angular-lint
-            command: npm run lint
-        - store_artifacts:
-            path: tslint.xml
-            prefix: lint
+jobs:
+  build:
+    working_directory: ~/breaking-bad
+    docker:
+      - image: circleci/node:8-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json"  }}
+      - run:
+          name: install-dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: angular-build
+          command: npm run build
+      - run:
+          name: angular-test
+          command: npm run test
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - run:
+          name: angular-lint
+          command: npm run lint
+      - store_artifacts:
+          path: tslint.xml
+          prefix: lint
