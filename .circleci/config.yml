@@ -7,22 +7,31 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-
-
-      - run: yarn install
-
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install-dependencies
+          command: yarn install
       - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
-      - run: yarn e2e
-      - run: yarn lint
-
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: angular-build
+          command: yarn build
+      - run:
+          name: angular-test
+          command: yarn test -- --single-run --no-progress       
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - run:
+          name: e2e-test
+          command: yarn e2e
+      - run:
+          name: angular-lint
+          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+      - store_artifacts:
+          path: tslint.xml
+          prefix: lint
